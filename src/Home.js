@@ -26,8 +26,8 @@ const Home = () => {
     <div className="home">
       <BlogList blogs={blogs} title="All Blogs:" />
       <BlogList
-        blogs={blogs.filter((auth) => auth.author === "placeboUser1")}
-        title="Author Blogs:"
+        blogs={blogs.filter((blog) => blog.author === "placeboUser1")}
+        title="First Author's Blogs:"
       />
     </div>
   );
