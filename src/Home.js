@@ -5,6 +5,8 @@ import BlogList from "./BlogList";
 
 const Home = () => {
   const [blogs, setBlogs] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   // const [name, setName] = useState("Me");
 
   // const handleDelete = (id) => {
@@ -22,11 +24,14 @@ const Home = () => {
       })
       .then((data) => {
         setBlogs(data);
+        setIsLoading(false);
       });
   }, []);
 
   return (
     <div className="home">
+      {/* Conditional templating in React */}
+      {isLoading && <h2>Loading...</h2>}
       {blogs && (
         <BlogList
           blogs={blogs}
