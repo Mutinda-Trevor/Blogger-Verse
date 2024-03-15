@@ -6,6 +6,7 @@ import BlogList from "./BlogList";
 const Home = () => {
   const [blogs, setBlogs] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // const [name, setName] = useState("Me");
 
@@ -20,17 +21,29 @@ const Home = () => {
   useEffect(() => {
     fetch("http://localhost:8000/blogs")
       .then((res) => {
+        console.log(res);
+
+        if (!res.ok) {
+          throw Error("Could not fetch the data from the resource");
+        }
         return res.json();
       })
+
       .then((data) => {
         setBlogs(data);
         setIsLoading(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.message);
       });
   }, []);
 
   return (
     <div className="home">
       {/* Conditional templating in React */}
+      {error && <h2>{error}</h2>}
       {isLoading && <h2>Loading...</h2>}
       {blogs && (
         <BlogList
