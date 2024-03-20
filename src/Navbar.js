@@ -11,7 +11,8 @@ const Navbar = () => {
           style={{
             color: "white",
             backgroundColor: "#f1356d",
-            borderRadius: "12px",
+            borderRadius: "21px",
+            padding: "10px",
           }}
         >
           New Blog
